@@ -3,329 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAIVAANITH | Sovereign Holding</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- SEO & Meta Data Collection -->
+    <title>Vaivaanith | A glowvai org</title>
+    <meta name="description" content="Vaivaanith Pvt Ltd is a dynamic holding entity managing forward-thinking brands including the Glowvai AI diagnostic skin platform, Vaithra founder infrastructure, and Vyapaarnet.">
+    <meta name="keywords" content="Vaivaanith, Glowvai, Vaithra, Vyapaarnet, AI Beauty, Startups, Holding Company, Andhra Pradesh, Quick Commerce">
+    <meta name="author" content="Vaivaanith Pvt Ltd">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vaivaanith | Empowering Founders & Innovation">
+    <meta property="og:description" content="Discover Vaivaanith's ecosystem, featuring Glowvai's AI skin reports, Vaithra's credibility network, and Vyapaarnet.">
+    <!-- Ensure the extension matches your uploaded file (e.g., .jpg or .png) -->
+    <meta property="og:image" content="/images/posterglv.jpg"> 
+    <meta property="og:url" content="https://vaivaanith.in">
+
+    <!-- Tailwind CSS for rapid, modern styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        :root {
-            --bg: #e0e5ec;
-            --text: #31344b;
-            --neu-dark: #a3b1c6;
-            --neu-light: #ffffff;
-            --gold: #b89b70;
-            --wing-grad: linear-gradient(#b89b70, #31344b);
-        }
-
-        body.dark-mode {
-            --bg: #0d0d0d;
-            --text: #e0e0e0;
-            --neu-dark: #000000;
-            --neu-light: #1a1a1a;
-            --wing-grad: linear-gradient(#b89b70, #000);
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Montserrat', sans-serif;
-            transition: background 0.6s ease;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* --- 3D INTERACTIVE BACKGROUND --- */
-        #bg-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; opacity: 0.3;
-        }
-
-        .cinzel { font-family: 'Cinzel', serif; }
-
-        /* --- NAVIGATION --- */
-        nav {
-            position: fixed; top: 0; width: 100%; height: 80px;
-            background: rgba(var(--bg), 0.85);
-            backdrop-filter: blur(20px);
-            z-index: 1000; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-
-        /* --- LEVER SWITCH --- */
-        .switch-container { transform: scale(0.4); margin-right: -20px; }
-        .switch {
-            background-color: #1a1a1a; border-radius: 0.5em;
-            box-shadow: 0 0.5em 1em rgba(0,0,0,0.5);
-            position: relative; width: 4.5em; height: 9.5em; border: 4px solid var(--gold);
-        }
-        .switch__input { position: absolute; cursor: pointer; width: 100%; height: 100%; opacity: 0; z-index: 10; }
-        .switch__lever {
-            background-color: #000; border-radius: 0.25em; margin: 0.4em; position: relative;
-            width: calc(100% - 0.8em); height: calc(100% - 0.8em);
-        }
-        .switch__lever-half-top, .switch__lever-half-bottom {
-            position: absolute; display: flex; justify-content: center; left: 0; width: 100%; height: 50%; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .switch__lever-half-top { background: #333; border-radius: 0.25em 0.25em 0 0; bottom: 50%; transform-origin: 50% 100%; border-bottom: 2px solid #000; }
-        .switch__lever-half-bottom { background: #444; border-radius: 0 0 0.25em 0.25em; top: 50%; transform: rotateX(-45deg); transform-origin: 50% 0; align-items: flex-end; }
-        .switch__lever-half-bottom:before { content: ""; background: #000; width: 0.8em; height: 2em; border-radius: 10px; margin-bottom: 0.5em; }
-        
-        .switch__input:checked ~ .switch__lever .switch__lever-half-top { transform: rotateX(45deg); background: var(--gold); }
-        .switch__input:checked ~ .switch__lever .switch__lever-half-bottom { transform: rotateX(0); background: #555; }
-        .switch__input:checked ~ .switch__lever .switch__lever-half-bottom:before { background: #00ff00; box-shadow: 0 0 20px #00ff00; }
-
-        /* --- HERO --- */
-        .hero { height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 0 8%; position: relative; }
-        .scene { position: relative; font-size: 10px; transform-style: preserve-3d; animation: sceneR 27s infinite linear; }
-        .scene * { position: absolute; transform-style: preserve-3d; }
-        @keyframes sceneR { from { transform: rotateZ(360deg) rotateX(-20deg) rotateZ(0deg); } to { transform: rotateZ(0deg) rotateX(-20deg) rotateZ(360deg); } }
-
-        .wing { inset: -1em -3em; border-radius: 1em; transform: translateZ(calc(var(--w) * 0.5em)) rotateY(calc(var(--odd, 0) * 180deg)); background-image: var(--wing-grad); }
-        .wing i { left: 100%; top: calc(50% - 1em); width: 80%; height: 2em; background-image: inherit; border-radius: inherit; transform-origin: left; animation: wingAnim 10s calc(var(--i) * 0.15s - 8s) infinite ease-in-out; }
-        .wing > i { width: 3em; rotate: y calc((var(--w) - 11.5) * var(--odd, 1) * 1deg); --i: 0; }
-        .wing > i > i { --i: 1; width: 5em; }
-        .wing > i > i > i { --i: 2; }
-        .wing > i > i > i > i { --i: 3; }
-        .wing > i > i > i > i > i { --i: 4; }
-        .wing > i > i > i > i > i > i { --i: 5; }
-        .wing:nth-child(odd) { --odd: -1; }
-        @keyframes wingAnim { 0%, 41%, 59%, 100% { transform: rotateZ(-10deg) translateX(1em); } 6%, 47%, 65% { transform: rotateZ(10deg) translateX(1em); } }
-
-        /* --- NEU-CARDS --- */
-        .neu-card { background: var(--bg); border-radius: 25px; box-shadow: 12px 12px 24px var(--neu-dark), -12px -12px 24px var(--neu-light); transition: 0.4s ease; }
-
-        /* --- VERTICAL ECOSYSTEM --- */
-        .eco-container { height: 75vh; display: flex; align-items: center; justify-content: center; gap: 60px; max-width: 1200px; margin: 0 auto; }
-        .eco-track { width: 400px; height: 100%; position: relative; transform-style: preserve-3d; }
-        .eco-card { position: absolute; width: 350px; height: 200px; border-radius: 20px; overflow: hidden; transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
-        .eco-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.6s; }
-        .eco-card.active { z-index: 10; transform: scale(1.1) translateZ(0); }
-        .eco-card.active img { filter: grayscale(0); }
-        .eco-card.prev { transform: translateY(-160px) scale(0.85); opacity: 0.5; z-index: 5; }
-        .eco-card.next { transform: translateY(160px) scale(0.85); opacity: 0.5; z-index: 5; }
-        .eco-card.hidden { opacity: 0; transform: scale(0.5); pointer-events: none; }
-
-        /* --- BLOGS SCROLL --- */
-        .blog-track { display: flex; width: calc(300px * 20); animation: autoScroll 35s linear infinite; }
-        @keyframes autoScroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-300px * 10)); } }
-        .blog-card { min-width: 280px; margin: 0 10px; }
-
-        .bio-text { max-height: 0; overflow: hidden; transition: 0.5s; font-size: 0.8rem; opacity: 0.7; }
-        .architect-card:hover .bio-text { max-height: 150px; padding-top: 10px; }
-    </style>
-</head>
-<body id="body">
-
-    <canvas id="bg-canvas"></canvas>
-
-    <nav>
-        <div class="cinzel font-bold text-2xl tracking-[0.25em]">VAIVAANITH</div>
-        <div class="flex items-center space-x-6">
-            <a href="#architects" class="text-[10px] font-bold uppercase tracking-widest">Architects</a>
-            <a href="#ecosystem" class="text-[10px] font-bold uppercase tracking-widest">Ecosystem</a>
-            <a href="#blogs" class="text-[10px] font-bold uppercase tracking-widest">Blogs</a>
-            <a href="#faqs" class="text-[10px] font-bold uppercase tracking-widest">FAQs</a>
-            <a href="#contact" class="text-[10px] font-bold uppercase tracking-widest">Contact</a>
-            
-            <div class="switch-container">
-                <div class="switch">
-                    <input class="switch__input" type="checkbox" id="modeSwitch">
-                    <span class="switch__lever">
-                        <span class="switch__lever-half-top"></span>
-                        <span class="switch__lever-half-bottom"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div>
-            <h1 class="cinzel text-6xl md:text-8xl tracking-tighter leading-none">VAIVAANITH</h1>
-            <div class="w-32 h-[3px] bg-gold my-8"></div>
-            <p class="text-xs tracking-[0.5em] uppercase opacity-50">Private Sovereign Holding</p>
-        </div>
-        <div class="flex justify-center">
-            <div class="scene" id="wingBox"></div>
-        </div>
-    </section>
-
-    <section id="architects" class="py-32 px-10 bg-black/5">
-        <h2 class="cinzel text-3xl text-center mb-16 tracking-widest">ARCHITECTS</h2>
-        <div class="grid lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-            <div class="neu-card p-10 architect-card cursor-pointer">
-                <div class="w-24 h-24 mb-6 rounded-full overflow-hidden neu-card">
-                    <img src="https://i.ibb.co/vzXW5rC/Sardhar.jpg" class="grayscale w-full h-full object-cover">
-                </div>
-                <h3 class="cinzel text-xl">Sardhar Musthafa</h3>
-                <p class="text-[10px] text-gold font-bold uppercase">Founder & CEO</p>
-                <div class="bio-text">Strategic director focused on structural business architecture and long-term adaptation.</div>
-            </div>
-            <div class="neu-card p-10 architect-card cursor-pointer">
-                <div class="w-24 h-24 mb-6 rounded-full flex items-center justify-center neu-card text-gold"><i class="fa-solid fa-crown text-3xl"></i></div>
-                <h3 class="cinzel text-xl">Sk Rahimath</h3>
-                <p class="text-[10px] text-gold font-bold uppercase">Co-Founder</p>
-                <div class="bio-text">Operational lead ensuring stability and consistent governance across the ecosystem.</div>
-            </div>
-            <div class="neu-card p-10 architect-card cursor-pointer">
-                <div class="w-24 h-24 mb-6 rounded-full flex items-center justify-center neu-card text-gold"><i class="fa-solid fa-gem text-3xl"></i></div>
-                <h3 class="cinzel text-xl">E. Chinna Gopi</h3>
-                <p class="text-[10px] text-gold font-bold uppercase">Strategic Partner</p>
-                <div class="bio-text">Tactical partner facilitating Tier-1 acquisitions and cross-border trade bridges.</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="ecosystem" class="py-32 px-4">
-        <h2 class="cinzel text-4xl text-center mb-16 tracking-widest uppercase">Ecosystem</h2>
-        
-        <div class="eco-container">
-            <div class="eco-track" id="ecoTrack">
-                <div class="eco-card neu-card" onclick="rotEco(0)"><img src="https://images.unsplash.com/photo-1557180295-76eee20ae8aa?w=500"></div>
-                <div class="eco-card neu-card" onclick="rotEco(1)"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500"></div>
-                <div class="eco-card neu-card" onclick="rotEco(2)"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500"></div>
-                <div class="eco-card neu-card" onclick="rotEco(3)"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500"></div>
-                <div class="eco-card neu-card" onclick="rotEco(4)"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500"></div>
-                <div class="eco-card neu-card" onclick="rotEco(5)"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500"></div>
-                <div class="eco-card neu-card" onclick="rotEco(6)"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500"></div>
-                <div class="eco-card neu-card" onclick="rotEco(7)"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500"></div>
-            </div>
-            <div class="min-w-[350px]">
-                <h2 id="ecoName" class="cinzel text-5xl text-gold mb-4">Glowvai.in</h2>
-                <p id="ecoRole" class="text-xs tracking-[0.5em] uppercase opacity-50">Aesthetic Intelligence</p>
-                <div class="flex gap-6 mt-12">
-                    <button class="neu-card p-6" onclick="rotEco(currIdx-1)"><i class="fa-solid fa-arrow-up"></i></button>
-                    <button class="neu-card p-6" onclick="rotEco(currIdx+1)"><i class="fa-solid fa-arrow-down"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="blogs" class="py-32 overflow-hidden bg-black/5">
-        <h2 class="cinzel text-3xl text-center mb-16 tracking-widest uppercase">Blogs</h2>
-        <div class="blog-track">
-            <div class="neu-card blog-card p-4"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=300" class="h-40 w-full object-cover rounded-xl mb-4"><h4>AI Diagnostics</h4></div>
-            <div class="neu-card blog-card p-4"><img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300" class="h-40 w-full object-cover rounded-xl mb-4"><h4>Bootstrap Edge</h4></div>
-            <div class="neu-card blog-card p-4"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300" class="h-40 w-full object-cover rounded-xl mb-4"><h4>Structural Growth</h4></div>
-            <div class="neu-card blog-card p-4"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300" class="h-40 w-full object-cover rounded-xl mb-4"><h4>Private Infra</h4></div>
-            <div class="neu-card blog-card p-4"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=300" class="h-40 w-full object-cover rounded-xl mb-4"><h4>AI Diagnostics</h4></div>
-            <div class="neu-card blog-card p-4"><img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=300" class="h-40 w-full object-cover rounded-xl mb-4"><h4>Bootstrap Edge</h4></div>
-        </div>
-    </section>
-
-    <section id="faqs" class="py-32 px-12">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="cinzel text-3xl text-center mb-16 tracking-widest uppercase">FAQs</h2>
-            <div class="space-y-6">
-                <details class="neu-card p-8 cursor-pointer">
-                    <summary class="font-bold text-xs uppercase tracking-widest">Sovereign Autonomy?</summary>
-                    <p class="mt-4 text-[10px] opacity-60">We operate 100% on internal capital to maintain absolute creative and structural independence.</p>
-                </details>
-                <details class="neu-card p-8 cursor-pointer">
-                    <summary class="font-bold text-xs uppercase tracking-widest">Expansion Protocol?</summary>
-                    <p class="mt-4 text-[10px] opacity-60">Entities are built for a 30-year lifecycle focusing on digital infrastructure over temporary trends.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-32 px-12">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20">
-            <div>
-                <h2 class="cinzel text-5xl mb-8">INQUIRE.</h2>
-                <div class="flex gap-8 text-3xl mb-12">
-                    <a href="https://instagram.com/the_vaivaanith" target="_blank" class="hover:text-gold transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://youtube.com/@glowvai" target="_blank" class="hover:text-gold transition"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://linkedin.com" target="_blank" class="hover:text-gold transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <p class="text-[10px] tracking-widest opacity-40 uppercase">Global Corridors: Zurich • Dubai • Vijayawada</p>
-            </div>
-            <div class="neu-card p-10">
-                <form class="space-y-6">
-                    <input type="text" placeholder="ENTITY / NAME" class="w-full bg-transparent border-b border-current py-3 text-xs outline-none">
-                    <textarea placeholder="PROPOSAL BRIEF" class="w-full bg-transparent border-b border-current py-3 text-xs outline-none h-32"></textarea>
-                    <button class="w-full py-5 bg-black text-white text-[10px] tracking-[0.5em] hover:bg-gold transition">SUBMIT PROTOCOL</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-10 text-center opacity-20 text-[9px] tracking-[0.5em]"> © 2026 VAIVAANITH PRIVATE LIMITED </footer>
-
+    <!-- Vaivaanith & Glowvai Instant Referral Tracker & Play Store Redirector -->
     <script>
-        // DARK MODE
-        const modeSwitch = document.getElementById('modeSwitch');
-        modeSwitch.addEventListener('change', () => document.body.classList.toggle('dark-mode'));
+    (function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var refId = urlParams.get('ref') || urlParams.get('token');
 
-        // 3D KINETIC BACKGROUND
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let points = [];
-        function initBg() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            points = [];
-            for(let i=0; i<60; i++) points.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:Math.random()-0.5, vy:Math.random()-0.5});
-        }
-        function drawBg() {
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.strokeStyle = document.body.classList.contains('dark-mode') ? '#ffffff11' : '#00000011';
-            points.forEach(p => {
-                p.x += p.vx; p.y += p.vy;
-                if(p.x<0 || p.x>canvas.width) p.vx*=-1;
-                if(p.y<0 || p.y>canvas.height) p.vy*=-1;
-                points.forEach(p2 => {
-                    let d = Math.hypot(p.x-p2.x, p.y-p2.y);
-                    if(d<150) { ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y); ctx.stroke(); }
-                });
-            });
-            requestAnimationFrame(drawBg);
-        }
-        window.addEventListener('resize', initBg);
-        initBg(); drawBg();
+      if (refId) {
+        var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxMKXA3nFFIlX4mmbTjrOMwSa1Vu7JSgx6HIlKqmT6jLcZ0qz5ppqWFcLczaIR1RxkAuw/exec';
+        var isStudent = refId.indexOf('STUDENT') !== -1;
+        var playStoreUrl = 'https://play.google.com/store/apps/details?id=com.glowvai.app&referrer=' + 
+                           encodeURIComponent('utm_source=' + (isStudent ? 'student_qr' : 'auto_qr') + '&utm_campaign=' + refId);
 
-        // WINGS
-        const wingBox = document.getElementById('wingBox');
-        for(let i=0; i<48; i++) {
-            const wing = document.createElement('div');
-            wing.className = 'wing';
-            wing.style.setProperty('--w', Math.floor(i/2));
-            wing.innerHTML = '<i><i><i><i><i><i></i></i></i></i></i></i>';
-            wingBox.appendChild(wing);
-        }
+        // 1. Silent, non-blocking telemetry sent to Google Sheets
+        try {
+          fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            keepalive: true,
+            body: JSON.stringify({
+              action: 'LOG_REFERRAL',
+              partnerId: refId,
+              userAgent: navigator.userAgent
+            })
+          }).catch(function() {});
+        } catch(e) {}
 
-        // ECOSYSTEM LOGIC (Corrected)
-        const ecoData = [
-            {n: "Glowvai.in", r: "Beauty & Personal care"},
-            {n: "Vaikhar.in", r: "Life style & Fashion"},
-            {n: "Vaithra.in", r: "Events & Infotainment"},
-            {n: "Vaiklips", r: "Social media & content creation"},
-            {n: "Vyapaarnet.in", r: "Retail & Logistics"},
-            {n: "StacX.in", r: "Education"},
-            {n: "DPG Solutions", r: "AI marketplace"},
-            {n: "Vainfra", r: "infrastructure"}
-        ];
-        let currIdx = 0;
-        const eCards = document.querySelectorAll('.eco-card');
-        const eName = document.getElementById('ecoName');
-        const eRole = document.getElementById('ecoRole');
+        // 2. Instant auto-redirect to Play Store in 800ms (0.8s) without requiring user permission
+        setTimeout(function() {
+          window.location.replace(playStoreUrl);
+        }, 800);
+      }
+    })();
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
 
-        function rotEco(idx) {
-            currIdx = (idx + ecoData.length) % ecoData.length;
-            eCards.forEach((c, i) => {
-                const off = (i - currIdx + ecoData.length) % ecoData.length;
-                c.className = "eco-card neu-card";
-                if(off === 0) c.classList.add('active');
-                else if(off === 1) c.classList.add('next');
-                else if(off === ecoData.length - 1) c.classList.add('prev');
-                else c.classList.add('hidden');
-            });
-            eName.textContent = ecoData[currIdx].n;
-            eRole.textContent = ecoData[currIdx].r;
+    <!-- Navigation Bar -->
+    <header class="bg-white shadow-sm z-40 sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Site Name -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-gray-900 tracking-tight">VAIVAANITH</a>
+                </div>
+                <!-- Nav Links -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-gray-900 font-medium transition">About Us</a>
+                    <a href="#ecosystem" class="text-gray-600 hover:text-gray-900 font-medium transition">Ecosystem</a>
+                    <a href="#support" class="text-gray-600 hover:text-gray-900 font-medium transition">Support</a>
+                    <a href="#contact" class="text-gray-600 hover:text-gray-900 font-medium transition">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Building the Future of Infrastructure & Tech</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                The central hub for pioneering platforms. From revolutionary AI diagnostic tools to dedicated founder networks.
+            </p>
+            
+            <!-- In-page Poster Display (Fallback if they close the pop-up) -->
+            <div class="mt-8">
+                <!-- IMPORTANT: Add the correct extension (.png, .jpg, etc.) to your file on GitHub -->
+                <img src="/images/posterglv.jpg" alt="Vaivaanith Ecosystem Poster" class="w-full max-w-4xl mx-auto rounded-xl shadow-lg border border-gray-200">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Vaivaanith Pvt Ltd</h3>
+                    <p class="text-gray-400 text-sm">
+                        Driving innovation through sub-brands that redefine their industries, empowering founders, and delivering cutting-edge solutions.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#ecosystem" class="hover:text-white transition">Our Brands</a></li>
+                        <li><a href="#support" class="hover:text-white transition">Support</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact & Support</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>Email: support@vaivaanith.in</li>
+                        <li>HQ: Andhra Pradesh, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+                &copy; 2026 Vaivaanith Pvt Ltd. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Poster Pop-Up Modal -->
+    <div id="posterModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 hidden transition-opacity duration-300 backdrop-blur-sm">
+        <div class="relative w-full max-w-3xl mx-4 sm:mx-auto">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-4xl font-bold hover:text-gray-300 focus:outline-none" aria-label="Close modal">
+                &times;
+            </button>
+            <!-- Poster Image -->
+            <!-- IMPORTANT: Ensure your GitHub repo file has the .jpg or .png extension -->
+            <img src="/images/posterglv.jpg" alt="Welcome Poster" class="w-full h-auto rounded-lg shadow-2xl object-contain max-h-[85vh]">
+        </div>
+    </div>
+
+    <!-- Script to handle the Poster Modal -->
+    <script>
+        // Show poster modal on page load, UNLESS a referral link is active (to prevent flashing before redirect)
+        window.onload = function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var isRedirecting = urlParams.get('ref') || urlParams.get('token');
+            
+            if (!isRedirecting) {
+                // Slight delay to make the pop-up feel smooth
+                setTimeout(function() {
+                    document.getElementById('posterModal').classList.remove('hidden');
+                }, 300);
+            }
+        };
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('posterModal').classList.add('hidden');
         }
-        rotEco(0);
     </script>
 </body>
 </html>
